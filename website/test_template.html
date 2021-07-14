@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Way to search for trending stocks.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+    
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Stockzillerator">
+    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+    
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-yellow.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Stockzillerator</title>
+
+    <style>
+        #view-source {
+            position: fixed;
+            display: block;
+            right: 0;
+            bottom: 0;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            z-index: 900;
+        }
+    </style>
+
+</head>
+
+<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+            <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+            </div>
+            <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+                <h3>Jays Stockzillerator</h3>
+            </div>
+            <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+            </div>
+            <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
+                <a href="#home" class="mdl-layout__tab is-active">Home</a>
+                <a href="#dd" class="mdl-layout__tab">DD &amp; Catalysts</a>
+                <a href="#points" class="mdl-layout__tab">Reddit Sentiment</a>
+            </div>
+        </header>
+        <main class="mdl-layout__content">
+            <div class="mdl-layout__tab-panel is-active" id="home">
+            
+            </div>
+            
+            <div class="mdl-layout__tab-panel" id="dd">
+                <h2>Penny Stocks DD</h2>
+                <div class="mdl-grid">
+                    <div class="mdl-layout-spacer"></div>
+                    <div id='pennyStocks_DD_Table'></div>
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+            
+                <h2>Wall Street Bets DD</h2>
+                <div class="mdl-grid">
+                    <div class="mdl-layout-spacer"></div>
+                    <div id='wallStreetBets_DD_Table'></div>
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+            
+                <h2>Small Street Bets DD</h2>
+                <div class="mdl-grid">
+                    <div class="mdl-layout-spacer"></div>
+                    <div id='smallStreetBets_DD_Table'></div>
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+            
+                <h2>Stocks DD</h2>
+                <div class="mdl-grid">
+                    <div class="mdl-layout-spacer"></div>
+                    <div id='stocks_DD_Table'></div>
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+            
+                <h2>SPACS DD</h2>
+                <div class="mdl-grid">
+                    <div class="mdl-layout-spacer"></div>
+                    <div id='SPACS_DD_Table'></div>
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+            </div>
+            
+            <div class="mdl-layout__tab-panel" id="points">
+                <h2>Penny Stocks Points</h2>
+                <div class="mdl-grid">
+                    <div id='pennyStocks_Points_Table'></div>
+                    <div id='pennyStocks_Yahoo_Table'></div>
+                </div>
+            
+                <h2>RobinHood Penny Stocks Points</h2>
+                <div class="mdl-grid">
+                    <div id='robinhoodPennyStocks_Points_Table'></div>
+                    <div id='robinhoodPennyStocks_Yahoo_Table'></div>
+                </div>
+            
+                <h2>Wall Street Bets Point</h2>
+                <div class="mdl-grid">
+                    <div id='wallStreetBets_Points_Table'></div>
+                    <div id='wallStreetBets_Yahoo_Table'></div>
+                </div>
+            
+                <h2>Small Street Bets Points</h2>
+                <div class="mdl-grid">
+                    <div id='smallStreetBets_Points_Table'></div>
+                    <div id='smallStreetBets_Yahoo_Table'></div>
+                </div>
+            
+                <h2>Stock Market Points</h2>
+                <div class="mdl-grid">
+                    <div id='stockMarket_Points_Table'></div>
+                    <div id='stockMarket_Yahoo_Table'></div>
+                </div>
+            
+                <h2>Stocks Points</h2>
+                <div class="mdl-grid">
+                    <<div id='stocks_Points_Table'>
+                </div>
+                <div id='stocks_Yahoo_Table'></div>
+            </div>
+        </main>
+        
+
+    </div>
+
+    <!-- JS -->
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="./js/load_table.js"></script>
+    <script src="./js/load_dynamic_css.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,4 @@
+additional_files/*
+.vscode/*
+*~$*
+ngrok.exe
